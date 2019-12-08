@@ -22,7 +22,7 @@
 #include "configuration.h"
 
 // Uncomment to enable calibration mode to find servo pins and angles
-//#define CALIBRATION_MODE
+#define CALIBRATION_MODE
 
 // Our real time clock
 RTC_DS3231 rtc;
@@ -311,4 +311,3 @@ void loop() {
   delay(100);
 #endif
 }
-

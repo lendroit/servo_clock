@@ -10,9 +10,9 @@ const int digit_count = 4;
 const int digit_configuration[digit_count][3][7] = {
   // digit 0
   {
-    {22,  23,  24,  25,  26,  27,  28}, // pins
-    {53,  52,  127, 45,  123, 55,  45}, // on angles
-    {139, 135, 35,  140, 35,  140, 130} // off angles
+    {39,  37,  35,  33,  31,  29,  27}, // pins
+    {58,  40,  120, 48,  135, 55,  44}, // on angles
+    {152, 142, 25,  150, 31,  145, 130} // off angles
   },
   // digit 1
   {
