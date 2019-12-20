@@ -23,7 +23,7 @@ const int digit_configuration[digit_count][3][7] = {
   // digit 2
   {
     {53,  51,  49,  47,  45,  43,  41}, // pins
-    {60,  35,  133, 45,  130, 50,  45}, // on angles
+    {60,  35,  133, 45,  126, 50,  45}, // on angles
     {153, 135, 40,  135, 35,  135, 130} // off angles
   },
   // digit 3
