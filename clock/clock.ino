@@ -22,7 +22,7 @@
 #include "configuration.h"
 
 // Uncomment to enable calibration mode to find servo pins and angles
-//#define CALIBRATION_MODE
+// #define CALIBRATION_MODE
 
 // Our real time clock
 RTC_DS3231 rtc;
@@ -198,6 +198,15 @@ class Digit
           segments[6]->on();          
       }
     }
+    hide() {
+      segments[0]->off();
+      segments[1]->off();
+      segments[2]->off();
+      segments[3]->off();
+      segments[4]->off();
+      segments[5]->off();
+      segments[6]->off(); 
+    }
     ~Digit() {
       for (int i = 0; i < segment_count; i++) {
         delete segments[i];
@@ -225,16 +234,40 @@ class Clock {
       int hour = time.hour();
       int minute = time.minute();
 
+      if (shouldEnableNightMode(time)) {
+        nightMode();
+        return;
+      }
+
       // Find the individual digits to display for the hour
       digits[0]->number(hour / 10);
       digits[1]->number(hour % 10);
       digits[2]->number(minute / 10);
       digits[3]->number(minute % 10);
     }
+    nightMode() {
+      digits[0]->hide();
+      digits[1]->hide();
+      digits[2]->hide();
+      digits[3]->hide();
+    }
     ~Clock() {
       for (int i = 0; i < digit_count; i++) {
         delete digits[i];
       }      
+    }
+  private:
+    shouldEnableNightMode(DateTime time) {
+      int dayOfTheWeek = time.dayOfTheWeek();
+      // Skip Saturday and Sunday
+      if (dayOfTheWeek == 6 || dayOfTheWeek == 0) {
+        return false;
+      }
+      int hour = time.hour();
+      if (hour >= 0 && hour < 7) {
+        return true;
+      }
+      return false;
     }
 };
 
